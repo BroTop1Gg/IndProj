@@ -16,10 +16,7 @@
     min-height: 100vh;
 }
 
-.services
-{
-    background-color: #17c1a4;
-}
+
 
 
 /* Logo: 117x37, left: 210, top: 57 */
@@ -125,4 +122,51 @@ header
   flex-direction: column;
   align-items: center;
   gap: 62px;
+}
+
+
+/*===================================*/
+.services
+{
+    background-color: #17c1a4;
+    padding-top: 115px;
+    padding-bottom: 125px;
+}
+
+.second-part-main-subtitle
+{
+    max-width: 600px;
+    margin: 0 auto 80px;
+    color: #ffffff;
+    line-height: 1.5;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.second-part-main-text
+{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.services-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-item {
+    text-align: center;
+    color: white;
+}
+
+.service-item h3 {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 20px 0 10px;
+    color: white;
+}
+
+.service-item p {
+    line-height: 1.6;
 }
