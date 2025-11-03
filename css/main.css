@@ -6,6 +6,7 @@
     font-weight: 400; /* regular */
     font-style: normal;
     color: #f7f3ea;
+    letter-spacing: 2px;
 }
 
 .promo-wraper
@@ -13,7 +14,8 @@
     background-color: #86509C;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    padding-bottom: 145px;
 }
 
 
@@ -37,7 +39,7 @@ header .container
 }
 
 main {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,10 +120,15 @@ header
 
 .work-part .container 
 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 62px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 62px;
+}
+
+.work-part
+{
+    padding-top: 140px; 
 }
 
 
@@ -135,7 +142,8 @@ header
 
 .second-part-main-subtitle
 {
-    max-width: 600px;
+    /* max-width: 600px; */
+    text-align: center;
     margin: 0 auto 80px;
     color: #ffffff;
     line-height: 1.5;
@@ -148,6 +156,17 @@ header
     text-align: center;
     font-size: 40px;
     font-weight: 600;
+    margin-top: 0px;
+}
+
+/* Small line after main text */
+.second-part-main-text::after {
+    content: '';
+    display: block;
+    width: 87px;
+    height: 4px;
+    background-color: #14a58c;
+    margin: 20px auto 0;
 }
 
 .services-list {
@@ -156,17 +175,31 @@ header
 }
 
 .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     color: white;
+    /* flex-basis: 25%; */
 }
 
-.service-item h3 {
+.service-item__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    min-height: 135px; /* rocket high and little bit more */
+}
+
+/* Контейнер з текстом */
+.service-item__text h3 {
     text-transform: uppercase;
-    font-weight: 600;
-    margin: 20px 0 10px;
+    font-weight: 700;
+    margin-top: 50px; /* Відстань від блоку з іконкою до заголовка */
+    margin-bottom: 20px;
     color: white;
 }
 
-.service-item p {
+.service-item__text p {
     line-height: 1.6;
 }
