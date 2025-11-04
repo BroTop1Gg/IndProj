@@ -180,11 +180,10 @@ header
     min-height: 135px; /* rocket high and little bit more */
 }
 
-/* Контейнер з текстом */
 .service-item__text h3 {
     text-transform: uppercase;
     font-weight: 700;
-    margin-top: 50px; /* Відстань від блоку з іконкою до заголовка */
+    margin-top: 50px;
     margin-bottom: 20px;
 }
 
