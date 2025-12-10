@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  # 1. HTML Validation & JS Linting
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # HTML validation
+      - name: Validate HTML
+        uses: anishathalye/html-validator-action@master
+        with:
+          directory: .
+          extension: html
+
+      # Configurating Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      # JS validation with ESLint
+      - name: Install & Run ESLint
+        run: |
+          npm init -y
+          npm install eslint --save-dev
+          echo '{"extends": "eslint:recommended", "env": {"browser": true, "es6": true}, "parserOptions": {"ecmaVersion": 2020}}' > .eslintrc.json
+          npx eslint "**/*.js"
+
+  # 2. Lighthouse CI check
+  lighthouse:
+    needs: code-quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Audit with Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: 'index.html'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 1
