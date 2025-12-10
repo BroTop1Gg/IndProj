@@ -40,7 +40,7 @@ jobs:
       - name: Audit with Lighthouse
         uses: treosh/lighthouse-ci-action@v10
         with:
-          urls: 'index.html'
+          staticDistDir: .
           uploadArtifacts: true
           temporaryPublicStorage: true
           runs: 1
