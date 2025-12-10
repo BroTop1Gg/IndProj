@@ -3,14 +3,14 @@
 
 body {
     font-family: "Titillium Web", sans-serif;
-    font-weight: 400; /* regular */
+    font-weight: 400;
+    /* regular */
     font-style: normal;
     /* color: #f7f3ea; */
     letter-spacing: 2px;
 }
 
-.promo-wraper
-{
+.promo-wraper {
     background-color: #86509C;
     display: flex;
     flex-direction: column;
@@ -23,46 +23,41 @@ body {
 
 /* container 1270 right, 210 left */
 
-.container
-{
+.container {
     max-width: 1060px;
     margin: 0 auto;
 }
 
-header .container 
-{
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 
-header
-{
+header {
     padding-top: 37px;
 }
 
 /* 60 px from top, 92 down bound */
-.nav ul
-{
+.nav ul {
     display: flex;
     margin: 0px;
     padding: 0px;
     list-style: none;
     align-items: center;
 }
+
 /*43->42->41->43*/
-.nav li
-{
+.nav li {
     margin-left: 11px;
 }
-.nav li:first-of-type
-{
+
+.nav li:first-of-type {
     margin-left: 0px;
 }
 
-.nav li a
-{
+.nav li a {
     font-size: 16px;
     text-decoration: none;
     padding: 8px 16px;
@@ -70,28 +65,28 @@ header
     text-transform: uppercase;
     color: #f7f3ea;
 }
+
 /*16x8 | 43-(16*2) = 11 dist between butt*/
-.nav a:hover
-{
+.nav a:hover {
     background-color: #643A79;
 }
 
-.main-text
-{
+.main-text {
     text-align: center;
     font-weight: 700;
     margin: 0px;
     /* margin-top: 239px; */
 }
 
-.btn 
-{
+.btn {
     display: inline-block;
-    padding: 23px 82px; /* coorected paddings */
+    padding: 23px 82px;
+    /* coorected paddings */
     border-radius: 5px;
     border: none;
-    cursor: pointer; /* On event guidance show different cursor*/
-    box-shadow: -1px 4px 0px -1px rgba(0,0,0,0.2);
+    cursor: pointer;
+    /* On event guidance show different cursor*/
+    box-shadow: -1px 4px 0px -1px rgba(0, 0, 0, 0.2);
 
     text-align: center;
 
@@ -107,31 +102,27 @@ header
     text-decoration: none;
 }
 
-.work-part .container 
-{
+.work-part .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 62px;
 }
 
-.work-part
-{
-    padding-top: 140px; 
+.work-part {
+    padding-top: 140px;
 }
 
 
 /*===================================*/
-.services
-{
+.services {
     background-color: #17c1a4;
     padding-top: 115px;
     padding-bottom: 125px;
     color: white;
 }
 
-.second-part-main-subtitle
-{
+.second-part-main-subtitle {
     /* max-width: 600px; */
     text-align: center;
     margin: 0 auto 80px;
@@ -140,8 +131,7 @@ header
     font-weight: 400;
 }
 
-.second-part-main-text
-{
+.second-part-main-text {
     text-align: center;
     font-size: 40px;
     font-weight: 600;
@@ -176,8 +166,9 @@ header
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    min-height: 135px; /* rocket high and little bit more */
+
+    min-height: 135px;
+    /* rocket high and little bit more */
 }
 
 .service-item__text h3 {
@@ -210,7 +201,7 @@ header
     height: 75px;
     border: 10px solid #fff;
     border-radius: 50%;
-    border-top-color: gold; 
+    border-top-color: gold;
     left: 50%;
     top: 50%;
     position: absolute;
@@ -227,7 +218,99 @@ header
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
+
     to {
         transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/*LAB 14 slider*/
+.portfolio-slider-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #f7f3ea;
+    /* Світлий фон для контрасту */
+    color: #333;
+}
+
+.slider_container {
+    max-width: 1000px;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* JS must show slides*/
+.myslide {
+    display: none;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.text {
+    color: #f2f2f2;
+    font-size: 20px;
+    padding: 15px 12px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    /* Підкладка під текст */
+    box-sizing: border-box;
+}
+
+.slider_pointer {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.slider_pointer:hover {
+    background-color: #eb7d4b;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4
+    }
+
+    to {
+        opacity: 1
     }
 }

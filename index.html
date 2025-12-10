@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +14,10 @@
         <div class="loader"></div>
     </div>
 
-    <div class="promo-wraper">    
+    <div class="promo-wraper">
         <header>
             <div class="container">
-                <a href="/"> 
+                <a href="/">
                     <img src="img/logo.png" alt="logo">
                 </a>
                 <nav class="nav">
@@ -35,18 +36,18 @@
             <section class="work-part">
                 <div class="container">
                     <h1 class="main-text">
-                        Hi there! We are the new kids on the block<br> 
+                        Hi there! We are the new kids on the block<br>
                         and we build awesome websites and mobile apps.
                     </h1>
 
                     <!--Idk this button definition, but let goal will move user somewhere-->
                     <a href="#" class="btn">WORK WITH US!</a>
-                    
+
                 </div>
             </section>
         </main>
     </div>
-    
+
     <section class="services">
         <div class="container">
             <h2 class="second-part-main-text">SERVICES WE PROVIDE</h2>
@@ -95,12 +96,51 @@
             </div>
         </div>
     </section>
-    
+
+    <!--LAB 14 slider-->
+    <section class="portfolio-slider-section">
+        <div class="container">
+            <h2 class="second-part-main-text">OUR RECENT WORK</h2>
+            <p class="second-part-main-subtitle">Check out our latest projects.</p>
+
+            <div class="slider_container">
+
+                <div class="myslide fade">
+                    <img src="https://placehold.co/1000x500/86509C/ffffff?text=Web+Design+Project" style="width:100%"
+                        alt="Project 1">
+                    <div class="text">Web Design Project</div>
+                </div>
+
+                <div class="myslide fade">
+                    <img src="https://placehold.co/1000x500/17c1a4/ffffff?text=Mobile+App" style="width:100%"
+                        alt="Project 2">
+                    <div class="text">Mobile App Development</div>
+                </div>
+
+                <div class="myslide fade">
+                    <img src="https://placehold.co/1000x500/eb7d4b/ffffff?text=Branding" style="width:100%"
+                        alt="Project 3">
+                    <div class="text">Branding Campaign</div>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="slider_pointer" onclick="currentSlide(1)"></span>
+                <span class="slider_pointer" onclick="currentSlide(2)"></span>
+                <span class="slider_pointer" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </section>
 
     <footer>
 
     </footer>
     <script src="js/preloader.js"></script>
+    <script src="js/slider.js"></script>
 </body>
 
 </html>
