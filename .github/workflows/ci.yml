@@ -3,33 +3,34 @@ name: CI/CD Pipeline
 on: [push, pull_request]
 
 jobs:
-  # 1. HTML Validation & JS Linting
+  # 1. HTML and JS Checks
   code-quality:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # HTML validation
-      - name: Validate HTML
+      # Check HTML files
+      - name: Validate HTML (HTMLHint)
         run: npx htmlhint "**/*.html"
 
-      # Configurating Node.js
+      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
       
-      # JS validation with ESLint
+      # Check JS files
       - name: Install & Run ESLint
         run: |
           npm init -y
           npm install eslint@8 --save-dev
+          # Create config file
           echo '{"extends": "eslint:recommended", "env": {"browser": true, "es6": true}, "parserOptions": {"ecmaVersion": 2020}}' > .eslintrc.json
-          # Pass test even with no .js files
+          # Run check (pass even if no JS files exist)
           npx eslint "**/*.js" --no-error-on-unmatched-pattern
 
- # 2. Lighthouse CI check
+  # 2. Lighthouse Performance Check
   lighthouse:
     needs: code-quality
     runs-on: ubuntu-latest
@@ -42,20 +43,16 @@ jobs:
         with:
           node-version: '18'
 
-      # Setup simple server
-      # Run it in BG
-      # Wait 3 sec to run it
-      - name: Start Local Server
+      # Install tool and run tests
+      - name: Run Lighthouse CI
         run: |
-          npm install -g http-server
-          npx http-server . -p 3000 &
-          sleep 3
+          npm install -g @lhci/cli
+          # Test files in the current folder
+          lhci collect --staticDistDir=.
 
-      # Check website from server
-      - name: Audit with Lighthouse
-        uses: treosh/lighthouse-ci-action@v10
+      # Save report to GitHub
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
         with:
-          urls: 'http://localhost:3000'
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          runs: 1
+          name: lighthouse-report
+          path: .lighthouseci/
