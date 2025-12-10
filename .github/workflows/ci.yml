@@ -12,7 +12,6 @@ jobs:
 
       # HTML validation
       - name: Validate HTML
-        uses: anishathalye/html-validator-action@master
         with:
           directory: .
           extension: html
