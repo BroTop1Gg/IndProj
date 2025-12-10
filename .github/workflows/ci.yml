@@ -1,0 +1,59 @@
+name: CI/CD Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  # 1. HTML and JS Checks
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Check HTML files
+      - name: Validate HTML (HTMLHint)
+        run: npx htmlhint "**/*.html"
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      # Check JS files
+      - name: Install & Run ESLint
+        run: |
+          npm init -y
+          npm install eslint@8 --save-dev
+          # Create config file
+          echo '{"extends": "eslint:recommended", "env": {"browser": true, "es6": true}, "parserOptions": {"ecmaVersion": 2020}}' > .eslintrc.json
+          # Run check (pass even if no JS files exist)
+          npx eslint "**/*.js" --no-error-on-unmatched-pattern
+
+  # 2. Lighthouse Performance Check
+  lighthouse:
+    needs: code-quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Install tool and run tests
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          # Test files in the current folder
+          lhci collect --staticDistDir=.
+
+      # Save report to GitHub
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/
+          include-hidden-files: true
