@@ -29,7 +29,7 @@ jobs:
           # Pass test even with no .js files
           npx eslint "**/*.js" --no-error-on-unmatched-pattern
 
-  # 2. Lighthouse CI check
+ # 2. Lighthouse CI check
   lighthouse:
     needs: code-quality
     runs-on: ubuntu-latest
@@ -37,10 +37,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Setup simple server
+      # Run it in BG
+      # Wait 3 sec to run it
+      - name: Start Local Server
+        run: |
+          npm install -g http-server
+          npx http-server . -p 3000 &
+          sleep 3
+
+      # Check website from server
       - name: Audit with Lighthouse
         uses: treosh/lighthouse-ci-action@v10
         with:
-          staticDistDir: .
+          urls: 'http://localhost:3000'
           uploadArtifacts: true
           temporaryPublicStorage: true
           runs: 1
