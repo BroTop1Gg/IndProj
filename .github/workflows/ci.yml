@@ -26,7 +26,8 @@ jobs:
           npm init -y
           npm install eslint@8 --save-dev
           echo '{"extends": "eslint:recommended", "env": {"browser": true, "es6": true}, "parserOptions": {"ecmaVersion": 2020}}' > .eslintrc.json
-          npx eslint "**/*.js"
+          # Pass test even with no .js files
+          npx eslint "**/*.js" --no-error-on-unmatched-pattern
 
   # 2. Lighthouse CI check
   lighthouse:
