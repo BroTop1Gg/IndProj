@@ -12,9 +12,7 @@ jobs:
 
       # HTML validation
       - name: Validate HTML
-        with:
-          directory: .
-          extension: html
+        run: npx htmlhint "**/*.html"
 
       # Configurating Node.js
       - name: Setup Node.js
